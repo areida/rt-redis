@@ -1,0 +1,36 @@
+// vendor imports
+    @import "app-settings";
+    @import "synfrastructure/scss/synfrastructure";
+
+// dependency imports
+    @import "dependencies/synfrastructure-loader";
+    @import "dependencies/colors";
+    @import "dependencies/fonts";
+
+// layouts
+    @import "layouts/base";
+    @import "layouts/layout";
+    @import "layouts/layout-utilities";
+    @import "layouts/z-indexes";
+
+// regions
+    @import "regions/region-layout";
+
+// component imports
+
+    // typography
+    @import "components/typography/headings";
+    @import "components/typography/grouping-elements";
+    @import "components/typography/text-level-elements";
+
+    // buttons
+    @import "components/buttons/buttons";
+
+    //icons
+    @import "components/icons/icons-base";
+
+    // forms
+    @import "components/forms/form-base";
+
+// pages
+    @import "pages/home";
