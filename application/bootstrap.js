@@ -1,4 +1,3 @@
-/* globals window, io */
 'use strict';
 
 import config           from './config';

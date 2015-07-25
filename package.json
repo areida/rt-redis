@@ -1,20 +1,17 @@
 {
-  "author": "Synapse Studios",
-  "name": "frontend-template",
+  "author": "Andrew Reida",
+  "name": "rt-redis",
   "version": "0.0.0",
-  "description": "A quickstart frontend template that expects to be paired with a backend based off of synapsestudios/api-template",
+  "description": "A real-time redis server and client",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/synapsestudios/frontend-template.git"
+    "url": "https://github.com/areida/rt-redis.git"
   },
   "scripts": {
     "start": "./start.sh",
-    "windows": "rmdir /S /Q build && webpack.cmd && node dev-server",
     "webpack": "rm -rf ./build && webpack",
     "dist": "./dist.sh production",
-    "test": "cd __tests__ && rm -rf ./build && webpack && node dev-server",
-    "karma": "./node_modules/karma/bin/karma start karma.conf.js",
     "clean": "rm -rf ./build"
   },
   "devDependencies": {
@@ -31,6 +28,7 @@
     "postcss-loader": "0.5.0",
     "raw-loader": "0.5.1",
     "react-hot-loader": "1.2.7",
+    "request": "2.53.0",
     "sass-loader": "1.0.2",
     "style-loader": "0.12.3",
     "url-loader": "0.5.5",
@@ -47,14 +45,11 @@
     "json-markup": "^0.1.6",
     "lodash": "3.6.0",
     "moment": "^2.9.0",
-    "numeral": "1.5.3",
     "q": "1.0.1",
     "react": "0.13.3",
     "react-router": "0.13.3",
-    "request": "2.53.0",
     "socket.io": "^1.3.6",
     "store": "1.3.16",
-    "synapse-common": "~1.8.0",
     "synfrastructure": "3.1.3",
     "then-redis": "1.3.0"
   }

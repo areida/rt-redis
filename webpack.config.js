@@ -104,11 +104,12 @@ module.exports = [
                 __BACKEND__     : true,
                 __ENVIRONMENT__ : true,
                 __HOSTNAME__    : true,
-                console         : true,
                 File            : true,
-                window          : true,
+                console         : true,
                 document        : true,
-                setTimeout      : true
+                io              : true,
+                setTimeout      : true,
+                window          : true
             },
             maxdepth : 5
         }
