@@ -9,6 +9,9 @@ import KeyList from '../components/key/key-list-container';
 
 let FluxMixin = Fluxxor.FluxMixin(React);
 
+const KEY_TIMEOUT  = 1000;
+const KEYS_TIMEOUT = 2500;
+
 module.exports = React.createClass({
 
     displayName : 'SiteLayout',
@@ -41,15 +44,15 @@ module.exports = React.createClass({
         let params = this.getParams();
 
         if (params.key) {
-            this.getFlux().actions.key.get(params.key).done(() => _.delay(this.pollKey, 1000));
+            this.getFlux().actions.key.get(params.key).done(() => _.delay(this.pollKey, KEY_TIMEOUT));
         } else {
-            _.delay(this.pollKey, 1000);
+            _.delay(this.pollKey, KEY_TIMEOUT);
         }
     },
 
     pollKeys()
     {
-        this.getFlux().actions.key.getAll().done(() => _.delay(this.pollKeys, 1000));
+        this.getFlux().actions.key.getAll().done(() => _.delay(this.pollKeys, KEYS_TIMEOUT));
     },
 
     render()

@@ -17,7 +17,7 @@ module.exports = React.createClass({
     {
         return (
             <ul>
-                {this.props.keys.toJS().map(
+                {this.props.keys.sort().toJS().map(
                     key => <KeyListItem keyString={key} key={key} />
                 )}
             </ul>
