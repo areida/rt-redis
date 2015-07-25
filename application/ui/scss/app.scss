@@ -1,9 +1,4 @@
-// vendor imports
-    @import "app-settings";
-    @import "synfrastructure/scss/synfrastructure";
-
 // dependency imports
-    @import "dependencies/synfrastructure-loader";
     @import "dependencies/colors";
     @import "dependencies/fonts";
 
@@ -12,9 +7,6 @@
     @import "layouts/layout";
     @import "layouts/layout-utilities";
     @import "layouts/z-indexes";
-
-// regions
-    @import "regions/region-layout";
 
 // component imports
 
@@ -32,5 +24,6 @@
     // forms
     @import "components/forms/form-base";
 
+    @import "vendor/reset";
 // pages
     @import "pages/home";

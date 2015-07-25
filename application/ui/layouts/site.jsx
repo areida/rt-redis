@@ -57,10 +57,10 @@ export default React.createClass({
     {
         return (
             <div className='row'>
-                <div className='large-3 columns'>
+                <div className='col-lg-2'>
                     <KeyList />
                 </div>
-                <div className='large-9 columns'>
+                <div className='col-lg-10'>
                     <RouteHandler params={this.getParams()} />
                 </div>
             </div>

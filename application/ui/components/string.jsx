@@ -2,7 +2,9 @@
 
 import React      from 'react';
 import Immutable  from 'immutable';
-import jsonMarkup from 'json-markup';
+
+import header from './header';
+import Json   from './json';
 
 export default React.createClass({
 
@@ -14,16 +16,15 @@ export default React.createClass({
 
     render()
     {
-        let value = this.props.data.get('value').get(0);
-
-        try {
-            value = JSON.parse(value);
-        } catch (x) {}
-
         return (
             <ul>
-                <li>STRING - {this.props.params.key}</li>
-                <li dangerouslySetInnerHTML={{__html : jsonMarkup(value)}} />
+                {header(this.props.params.key, this.props.data.get('ttl'), this.props.data.get('type'))}
+                <li className='row'>
+                    <Json
+                        className = 'col-xs'
+                        text      = {this.props.data.get('value').get(0)}
+                    />
+                </li>
             </ul>
         );
     }

@@ -2,7 +2,9 @@
 
 import React      from 'react';
 import Immutable  from 'immutable';
-import jsonMarkup from 'json-markup';
+
+import header from './header';
+import Json   from './json';
 
 export default React.createClass({
 
@@ -14,29 +16,18 @@ export default React.createClass({
 
     renderItems(item, index)
     {
-        let member = item.get('member');
-        let score  = item.get('score');
-
-        try {
-            member = JSON.parse(member);
-        } catch (x) {}
-
-        try {
-            score = JSON.parse(score);
-        } catch (x) {}
-
         return (
             <li key={index} className='row'>
-                <div className='large-1 columns'>
+                <div className='col-xs-1'>
                     {index}
                 </div>
-                <div
-                    className               = 'large-1 columns' 
-                    dangerouslySetInnerHTML = {{__html : jsonMarkup(score)}}
+                <Json
+                    className = 'col-xs-1' 
+                    text      = {item.get('score')}
                 />
-                <div
-                    className               = 'large-10 columns'
-                    dangerouslySetInnerHTML = {{__html : jsonMarkup(member)}}
+                <Json
+                    className = 'col-xs'
+                    text      = {item.get('member')}
                 />
             </li>
         );
@@ -46,7 +37,7 @@ export default React.createClass({
     {
         return (
             <ul>
-                <li>ZSET - {this.props.params.key}</li>
+                {header(this.props.params.key, this.props.data.get('ttl'), this.props.data.get('type'))}
                 {this.props.data.get('value').map(this.renderItems).toArray()}
             </ul>
         );

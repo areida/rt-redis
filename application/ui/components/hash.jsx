@@ -1,8 +1,10 @@
 'use strict';
 
-import React      from 'react';
-import Immutable  from 'immutable';
-import jsonMarkup from 'json-markup';
+import React     from 'react';
+import Immutable from 'immutable';
+
+import header from './header';
+import Json   from './json';
 
 export default React.createClass({
 
@@ -14,16 +16,12 @@ export default React.createClass({
 
     renderItem(value, key)
     {
-        try {
-            value = JSON.parse(value);
-        } catch (x) {}
-
         return (
             <li className='row' key={key}>
-                <div className='large-2 columns'>{key}</div>
-                <div
-                    className               = 'large-10 columns'
-                    dangerouslySetInnerHTML = {{__html : jsonMarkup(value)}}
+                <div className='col-xs-2'>{key}</div>
+                <Json
+                    className = 'col-xs'
+                    text      = {value}
                 />
             </li>
         );
@@ -33,7 +31,7 @@ export default React.createClass({
     {
         return (
             <ul>
-                <li>HASH - {this.props.params.key}</li>
+                {header(this.props.params.key, this.props.data.get('ttl'), this.props.data.get('type'))}
                 {this.props.data.get('value').map(this.renderItem).toArray()}
             </ul>
         );

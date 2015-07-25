@@ -2,7 +2,9 @@
 
 import React      from 'react';
 import Immutable  from 'immutable';
-import jsonMarkup from 'json-markup';
+
+import header from './header';
+import Json   from './json';
 
 export default React.createClass({
 
@@ -14,15 +16,13 @@ export default React.createClass({
 
     renderItem(member, index)
     {
-        try {
-            member = JSON.parse(member);
-        } catch (x) {}
-
         return (
-            <li
-                key                     = {index}
-                dangerouslySetInnerHTML = {{__html : jsonMarkup(member)}}
-            />
+            <li key={index} className='row'>
+                <Json
+                    className = 'col-xs'
+                    text      = {member}
+                />
+            </li>
         );
     },
 
@@ -30,7 +30,7 @@ export default React.createClass({
     {
         return (
             <ul>
-                <li>SET - {this.props.params.key}</li>
+                {header(this.props.params.key, this.props.data.get('ttl'), this.props.data.get('type'))}
                 {this.props.data.get('value').map(this.renderItem).toArray()}
             </ul>
         );
