@@ -1,10 +1,5 @@
-var Express = require('express');
-var redis   = require('then-redis');
-var Q       = require('q');
-
-var config = require('../application/config');
-
-var app = new Express();
+var redis = require('then-redis');
+var Q     = require('q');
 
 var db = redis.createClient();
 
@@ -63,34 +58,40 @@ var getters = {
     }
 };
 
-app.get('/keys', function (req, res) {
-    db.keys('*').then(function (keys) {
-        res.json(keys || []);
-    });
-});
-
-app.get('/key/:key', function (req, res) {
-    db.type(req.params.key).then(
-        function (type) {
-            if (getters.hasOwnProperty(type)) {
-                Q.all([
-                    getters[type](req.params.key),
-                    getters.ttl(req.params.key)
-                ]).done(
-                    function (responses) {
-                        res.json({
-                            key   : req.params.key,
-                            ttl   : responses[1],
-                            type  : type,
-                            value : responses[0]
-                        });
-                    }
-                );
-            } else {
-                res.sendStatus(404);
+module.exports = {
+    get : function(key) {
+        return db.type(key).then(
+            function (type) {
+                if (getters.hasOwnProperty(type)) {
+                    return Q.all([
+                        getters[type](key),
+                        getters.ttl(key)
+                    ]).then(
+                        function (responses) {
+                            return {
+                                key   : key,
+                                ttl   : responses[1],
+                                type  : type,
+                                value : responses[0]
+                            };
+                        }
+                    );
+                } else {
+                    return {
+                        key   : key,
+                        ttl   : -1,
+                        type  : type,
+                        value : null
+                    };
+                }
             }
-        }
-    );
-});
-
-module.exports = app;
+        );
+    },
+    keys : function() {
+        return db.keys('*').then(
+            function (keys) {
+                return (keys || []);
+            }
+        );
+    }
+};

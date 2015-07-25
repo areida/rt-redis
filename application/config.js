@@ -20,7 +20,7 @@ defaults = {
         hostname : ''
     },
     app : {
-        title : 'Redis Real-time'
+        title : 'Real-time Redis'
     }
 };
 

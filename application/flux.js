@@ -5,10 +5,15 @@ var Q       = require('q');
 var _       = require('lodash');
 
 var Stores  = require('./stores');
-var actions = require('./actions');
+var Actions = require('./actions');
 
-var Flux = function () {
-    var stores = {};
+var Flux = function (socket) {
+    var actions = {};
+    var stores  = {};
+
+    _.each(Actions, function (Action, name) {
+        actions[name] = new Action(socket);
+    });
 
     _.each(Stores, function (Store, name) {
         stores[name] = new Store();

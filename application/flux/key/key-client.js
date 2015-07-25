@@ -1,21 +1,32 @@
 'use strict';
 
-import config      from '../../config';
-import HttpGateway from 'synapse-common/http/auth-gateway';
+import Q from 'q';
 
-let KeyClient = HttpGateway.extend({
+module.exports = (socket) => {
+    return {
+        socketRequest(method, path)
+        {
+            return new Q.promise(
+                (resolve, reject) => {
+                    socket.emit(
+                        method,
+                        path,
+                        response => {
+                            resolve(response);
+                        }
+                    );
+                }
+            );
+        },
 
-    config : config.api,
+        get(key)
+        {
+            return this.socketRequest('GET', key);
+        },
 
-    get(key)
-    {
-        return this.apiRequest('GET', `/key/${key}`);
-    },
-
-    getAll()
-    {
-        return this.apiRequest('GET', '/keys');
-    }
-});
-
-module.exports = new KeyClient();
+        getAll()
+        {
+            return this.socketRequest('KEYS');
+        }
+    };
+};
