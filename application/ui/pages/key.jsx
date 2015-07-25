@@ -28,13 +28,6 @@ export default React.createClass({
         Fluxxor.StoreWatchMixin('Key')
     ],
 
-    propTypes : {
-        data : React.PropTypes.oneOf([
-            React.PropTypes.instanceOf(Immutable.List),
-            React.PropTypes.instanceOf(Immutable.Map)]
-        ).isRequired
-    },
-
     getStateFromFlux()
     {
         return {
@@ -52,5 +45,4 @@ export default React.createClass({
 
         return null;
     }
-
 });

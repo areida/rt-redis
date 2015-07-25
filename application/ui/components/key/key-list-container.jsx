@@ -28,5 +28,4 @@ export default React.createClass({
             <KeyList keys={this.state.keys} />
         );
     }
-
 });

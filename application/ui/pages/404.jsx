@@ -31,7 +31,5 @@ export default React.createClass({
                 <h2 style={style2}>{this.t('404.site-not-found')}</h2>
             </div>
         );
-
     }
-
 });

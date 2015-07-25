@@ -52,5 +52,4 @@ export default React.createClass({
             </ul>
         );
     }
-
 });
