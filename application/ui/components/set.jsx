@@ -30,7 +30,7 @@ export default React.createClass({
     {
         return (
             <ul>
-                {header(this.props.params.key, this.props.data.get('ttl'), this.props.data.get('type'))}
+                {header(this.props.data.get('key'), this.props.data.get('ttl'), this.props.data.get('type'))}
                 {this.props.data.get('value').map(this.renderItem).toArray()}
             </ul>
         );

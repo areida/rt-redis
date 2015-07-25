@@ -1,23 +1,16 @@
 'use strict';
 
-import React                 from 'react';
-import {RouteHandler, State} from 'react-router';
-import Fluxxor               from 'fluxxor';
+import React          from 'react';
+import {RouteHandler} from 'react-router';
+import Fluxxor        from 'fluxxor';
 
-import KeyList from '../components/key-list/key-list-container';
+import KeyList from '../components/key-list';
 
 export default React.createClass({
 
     displayName : 'SiteLayout',
 
-    mixins : [Fluxxor.FluxMixin(React), State],
-
-    getInitialState()
-    {
-        return {
-            key : this.getParams().key
-        };
-    },
+    mixins : [Fluxxor.FluxMixin(React)],
 
     render()
     {
@@ -27,7 +20,7 @@ export default React.createClass({
                     <KeyList />
                 </div>
                 <div className='col-lg-10'>
-                    <RouteHandler params={this.getParams()} />
+                    <RouteHandler />
                 </div>
             </div>
         );

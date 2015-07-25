@@ -39,6 +39,7 @@ export default React.createClass({
 
         return {
             data   : keyStore.data,
+            key    : this.getParams().key,
             loaded : keyStore.loaded
         };
     },
@@ -58,13 +59,7 @@ export default React.createClass({
 
     poll()
     {
-        let params = this.getParams();
-
-        if (params.key) {
-            this.getFlux().actions.key.getKey(params.key).done(() => _.delay(this.poll, POLL_DELAY));
-        } else {
-            _.delay(this.poll, POLL_DELAY);
-        }
+        this.getFlux().actions.key.getKey(this.getParams().key).done(() => _.delay(this.poll, POLL_DELAY));
     },
 
     render()
@@ -72,7 +67,7 @@ export default React.createClass({
         if (this.state.loaded) {
             let Component = componentMap[this.state.data.get('type')];
 
-            return <Component data={this.state.data} params={this.props.params} />;
+            return <Component data={this.state.data} />;
         }
 
         return null;

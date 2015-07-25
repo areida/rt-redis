@@ -50,10 +50,10 @@ export default React.createClass({
     getDefaultProps()
     {
         return {
-            size       : null,
-            rotate     : 0,
+            className  : null,
             colorTheme : null,
-            className  : null
+            rotate     : 0,
+            size       : null
         };
     },
 
