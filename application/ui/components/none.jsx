@@ -4,11 +4,10 @@ import React     from 'react';
 import Immutable from 'immutable';
 
 import header from './header';
-import Json   from './json';
 
 export default React.createClass({
 
-    displayName : 'String',
+    displayName : 'None',
 
     propTypes : {
         data : React.PropTypes.instanceOf(Immutable.Map).isRequired
@@ -19,12 +18,6 @@ export default React.createClass({
         return (
             <ul>
                 {header(this.props.params.key, this.props.data.get('ttl'), this.props.data.get('type'))}
-                <li className='row'>
-                    <Json
-                        className = 'col-xs'
-                        text      = {this.props.data.get('value').get(0)}
-                    />
-                </li>
             </ul>
         );
     }

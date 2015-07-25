@@ -16,8 +16,7 @@ export default (socket) => {
             this.dispatch(constants.GET_KEY);
 
             return client.getKey(key).then(
-                response => this.dispatch(constants.GET_KEY_SUCCESS, response),
-                error => this.dispatch(constants.GET_KEY_FAILURE, error)
+                response => this.dispatch(constants.GET_KEY_SUCCESS, response)
             );
         },
         getKeys()
@@ -25,8 +24,7 @@ export default (socket) => {
             this.dispatch(constants.GET_KEYS);
 
             return client.getKeys().then(
-                response => this.dispatch(constants.GET_KEYS_SUCCESS, response),
-                error => this.dispatch(constants.GET_KEYS_FAILURE, error)
+                response => this.dispatch(constants.GET_KEYS_SUCCESS, response)
             );
         }
     };

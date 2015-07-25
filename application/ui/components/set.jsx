@@ -1,7 +1,7 @@
 'use strict';
 
-import React      from 'react';
-import Immutable  from 'immutable';
+import React     from 'react';
+import Immutable from 'immutable';
 
 import header from './header';
 import Json   from './json';

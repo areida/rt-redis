@@ -15,10 +15,8 @@ export default Fluxxor.createStore({
         this.bindActions(
             constants.CLEAR_VALUE, 'onClearValue',
             constants.GET_KEY, 'onGetKey',
-            constants.GET_KEY_FAILURE, 'onGetKeyFailure',
             constants.GET_KEY_SUCCESS, 'onGetKeySuccess',
             constants.GET_KEYS, 'onGetKeys',
-            constants.GET_KEYS_FAILURE, 'onGetKeysFailure',
             constants.GET_KEYS_SUCCESS, 'onGetKeysSuccess'
         );
     },
@@ -33,13 +31,6 @@ export default Fluxxor.createStore({
     onGetKey()
     {},
 
-    onGetKeyFailure(error)
-    {
-        this.error = error;
-
-        this.emit('change');
-    },
-
     onGetKeySuccess(response)
     {
         this.data = Immutable.fromJS(response || {});
@@ -49,13 +40,6 @@ export default Fluxxor.createStore({
 
     onGetKeys()
     {},
-
-    onGetKeysFailure(error)
-    {
-        this.error = error;
-
-        this.emit('change');
-    },
 
     onGetKeysSuccess(response)
     {

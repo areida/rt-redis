@@ -14,10 +14,11 @@
 
 // links
 .a {
-    color      : $primary;
-    background : transparent;
-    cursor     : pointer;
-    transition : color 200ms ease;
+    color           : $primary;
+    background      : transparent;
+    cursor          : pointer;
+    transition      : color 200ms ease;
+    text-decoration : none;
 
     // Addresses outline displayed oddly in Chrome
     &:focus {
