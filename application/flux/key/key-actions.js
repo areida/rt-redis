@@ -1,10 +1,10 @@
 'use strict';
 
 import constants from './key-constants';
-import Client    from './key-client';
+import KeyClient from './key-client';
 
 export default (socket) => {
-    let client = new Client(socket);
+    let client = new KeyClient(socket);
 
     return {
         clearValue()

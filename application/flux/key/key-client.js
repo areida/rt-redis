@@ -1,32 +1,15 @@
 'use strict';
 
-import Q from 'q';
+import SocketClient from '../socket-client';
 
-export default (socket) => {
-    return {
-        socketRequest(method, path)
-        {
-            return new Q.promise(
-                (resolve, reject) => {
-                    socket.emit(
-                        method,
-                        path,
-                        response => {
-                            resolve(response);
-                        }
-                    );
-                }
-            );
-        },
+export default class KeyClient extends SocketClient {
+    getKey(key)
+    {
+        return this.socketRequest('key', key);
+    }
 
-        getKey(key)
-        {
-            return this.socketRequest('key', key);
-        },
-
-        getKeys()
-        {
-            return this.socketRequest('keys');
-        }
-    };
-};
+    getKeys()
+    {
+        return this.socketRequest('keys');
+    }
+}
