@@ -8,11 +8,11 @@ module.exports = {
     {
         this.dispatch(constants.KEY_CLEAR_VALUE);
     },
-    get(type, key)
+    get(key)
     {
         this.dispatch(constants.KEY_GET);
 
-        return client.get(type, key).then(
+        return client.get(key).then(
             response => this.dispatch(constants.KEY_GET_SUCCESS, response),
             error => this.dispatch(constants.KEY_GET_FAILURE, error)
         );

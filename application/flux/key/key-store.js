@@ -2,14 +2,13 @@
 
 import Fluxxor   from 'fluxxor';
 import Immutable from 'immutable';
-import _         from 'lodash';
 
 import constants from './key-constants';
 
 module.exports = Fluxxor.createStore({
     initialize : function()
     {
-        this.value = new Immutable.List();
+        this.data  = new Immutable.Map();
         this.keys  = new Immutable.List();
         this.error = false;
 
@@ -26,7 +25,7 @@ module.exports = Fluxxor.createStore({
 
     onClearValue()
     {
-        this.value = new Immutable.List();
+        this.data = new Immutable.Map();
 
         this.emit('change');
     },
@@ -43,15 +42,7 @@ module.exports = Fluxxor.createStore({
 
     onGetSuccess(response)
     {
-        if (_.isArray(response)) {
-            this.value = new Immutable.List(response);
-        } else if (_.isObject(response)) {
-            this.value = new Immutable.Map(response);
-        } else if (response) {
-            this.value = new Immutable.List([response]);
-        } else {
-            this.value = new Immutable.List();
-        }
+        this.data = Immutable.fromJS(response || {});
 
         this.emit('change');
     },

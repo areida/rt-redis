@@ -7,9 +7,9 @@ let KeyClient = HttpGateway.extend({
 
     config : config.api,
 
-    get(type, key)
+    get(key)
     {
-        return this.apiRequest('GET', `/${type}/${key}`);
+        return this.apiRequest('GET', `/key/${key}`);
     },
 
     getAll()

@@ -8,16 +8,7 @@ module.exports = React.createClass({
     displayName : 'KeyListItem',
 
     propTypes : {
-        item : React.PropTypes.shape({
-            key  : React.PropTypes.string.isRequired,
-            type : React.PropTypes.oneOf([
-                'hash',
-                'list',
-                'set',
-                'string',
-                'zset'
-            ]).isRequired
-        }).isRequired
+        keyString : React.PropTypes.string.isRequired
     },
 
     render()
@@ -25,11 +16,11 @@ module.exports = React.createClass({
         return (
             <li className='row'>
                 <Link
-                    to        = {this.props.item.type}
-                    params    = {{key : this.props.item.key}}
+                    to        = 'key'
+                    params    = {{key : this.props.keyString}}
                     className = 'large-12 columns'
                 >
-                    {this.props.item.key}
+                    {this.props.keyString}
                 </Link>
             </li>
         );

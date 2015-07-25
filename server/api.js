@@ -8,86 +8,87 @@ var app = new Express();
 
 var db = redis.createClient();
 
-app.get('/keys', function (req, res) {
-    db.keys('*').then(function (keys) {
-        keys = keys || [];
-
-        db.multi();
-        keys.map(
-            function (key) {
-                db.type(key);
-            }
-        )
-
-        db.exec().then(
-            function(types) {
-                res.json(types.map(
-                    function (type, index) {
-                        return {
-                            key  : keys[index],
-                            type : type
-                        };
-                    }
-                ));
+var getters = {
+    hash : function (key) {
+        return db.hgetall(key).then(
+            function (reply) {
+                return (reply || {})
             }
         );
+    },
+    list : function (key) {
+        return db.lrange(key, 0, -1).then(
+            function (reply) {
+                return (reply || [])
+            }
+        );
+    },
+    set : function (key) {
+        return db.smembers(key).then(
+            function (reply) {
+                return (reply || [])
+            }
+        );
+    },
+    string : function (key) {
+        return db.get(key).then(
+            function (reply) {
+                return ([reply] || []);
+            }
+        );
+    },
+    ttl : function (key) {
+        return db.ttl(key).then(
+            function (ttl) {
+                return (ttl);
+            }
+        );
+    },
+    zset : function (key) {
+        return db.zrange(key, 0, -1, 'WITHSCORES').then(
+            function (reply) {
+                reply    = reply || [];
+                response = [];
+
+                while (reply.length) {
+                    response.push({
+                        member : reply.shift(),
+                        score  : reply.shift()
+                    });
+                }
+
+                return response;
+            }
+        );
+    }
+};
+
+app.get('/keys', function (req, res) {
+    db.keys('*').then(function (keys) {
+        res.json(keys || []);
     });
 });
 
-app.get('/ttl/:key', function (req, res) {
-    db.ttl(req.params.key).then(
-        function (reply) {
-            res.json(reply);
-        }
-    );
-});
-
-app.get('/hash/:key', function (req, res) {
-    db.hgetall(req.params.key).then(
-        function (reply) {
-            res.json(reply || {});
-        }
-    );
-});
-
-app.get('/list/:key', function (req, res) {
-    db.lrange(req.params.key, 0, -1).then(
-        function (reply) {
-            res.json(reply || []);
-        }
-    );
-});
-
-app.get('/set/:key', function (req, res) {
-    db.smembers(req.params.key).then(
-        function (reply) {
-            res.json(reply || []);
-        }
-    );
-});
-
-app.get('/string/:key', function (req, res) {
-    db.get(req.params.key).then(
-        function (reply) {
-            res.json(reply);
-        }
-    );
-});
-
-app.get('/zset/:key', function (req, res) {
-    db.zrange(req.params.key, 0, -1, 'WITHSCORES').then(
-        function (reply) {
-            reply    = reply || [];
-            response = [];
-
-            while (reply.length) {
-                response.push({
-                    member : reply.shift(),
-                    score  : reply.shift()
-                });
+app.get('/key/:key', function (req, res) {
+    db.type(req.params.key).then(
+        function (type) {
+            if (getters.hasOwnProperty(type)) {
+                Q.all([
+                    getters[type](req.params.key),
+                    getters.ttl(req.params.key)
+                ]).done(
+                    function (responses) {
+                        res.json({
+                            key   : req.params.key,
+                            ttl   : responses[1],
+                            type  : type,
+                            value : responses[0]
+                        });
+                    }
+                );
+            } else {
+                res.sendStatus(404);
             }
-
-            res.json(response);
         }
     );
 });

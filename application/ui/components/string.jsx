@@ -2,38 +2,29 @@
 
 import React      from 'react';
 import Fluxxor    from 'fluxxor';
+import Immutable  from 'immutable';
 import jsonMarkup from 'json-markup';
 
 module.exports = React.createClass({
 
-    displayName : 'StringPage',
+    displayName : 'String',
 
-    mixins : [
-        Fluxxor.FluxMixin(React),
-        Fluxxor.StoreWatchMixin('Key')
-    ],
-
-    getStateFromFlux()
-    {
-        return {
-            value : this.getFlux().store('Key').value
-        };
+    propTypes : {
+        data : React.PropTypes.instanceOf(Immutable.Map).isRequired
     },
 
     render()
     {
-        let value = this.state.value.get(0);
+        let value = this.props.data.get('value').get(0);
 
         try {
             value = JSON.parse(value);
         } catch (x) {}
 
-        let html = jsonMarkup(value);
-
         return (
             <ul>
                 <li>STRING - {this.props.params.key}</li>
-                <li dangerouslySetInnerHTML={{__html : html}} />
+                <li dangerouslySetInnerHTML={{__html : jsonMarkup(value)}} />
             </ul>
         );
     }

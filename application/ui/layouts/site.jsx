@@ -2,7 +2,6 @@
 
 import React                 from 'react';
 import {RouteHandler, State} from 'react-router';
-import classNames            from 'classnames';
 import Fluxxor               from 'fluxxor';
 import _                     from 'lodash';
 
@@ -40,10 +39,9 @@ module.exports = React.createClass({
     pollKey()
     {
         let params = this.getParams();
-        let route  = _.last(this.getRoutes());
 
         if (params.key) {
-            this.getFlux().actions.key.get(route.name, params.key).done(() => _.delay(this.pollKey, 1000));
+            this.getFlux().actions.key.get(params.key).done(() => _.delay(this.pollKey, 1000));
         } else {
             _.delay(this.pollKey, 1000);
         }
@@ -56,17 +54,13 @@ module.exports = React.createClass({
 
     render()
     {
-        let classes = {
-            'row' : true
-        };
-
         return (
-            <div className={classNames(classes)}>
+            <div className='row'>
                 <div className='large-3 columns'>
                     <KeyList />
                 </div>
                 <div className='large-9 columns'>
-                    <RouteHandler />
+                    <RouteHandler params={this.getParams()} />
                 </div>
             </div>
         );

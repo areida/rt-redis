@@ -18,9 +18,7 @@ module.exports = React.createClass({
         return (
             <ul>
                 {this.props.keys.toJS().map(
-                    item => (
-                        <KeyListItem item={item} key={item.key} />
-                    )
+                    key => <KeyListItem keyString={key} key={key} />
                 )}
             </ul>
         );
