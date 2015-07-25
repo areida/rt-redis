@@ -12,7 +12,7 @@ let FluxMixin = Fluxxor.FluxMixin(React);
 const KEY_TIMEOUT  = 1000;
 const KEYS_TIMEOUT = 2500;
 
-module.exports = React.createClass({
+export default React.createClass({
 
     displayName : 'SiteLayout',
 

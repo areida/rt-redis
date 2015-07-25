@@ -19,7 +19,7 @@ let componentMap = {
     zset   : ZSetComponent
 };
 
-module.exports = React.createClass({
+export default React.createClass({
 
     displayName : 'KeyPage',
 

@@ -6,7 +6,7 @@ import _       from 'lodash';
 
 import KeyList from './key-list';
 
-module.exports = React.createClass({
+export default React.createClass({
 
     displayName : 'KeyListContainer',
 

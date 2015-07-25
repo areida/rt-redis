@@ -5,7 +5,7 @@ import Immutable from 'immutable';
 
 import constants from './key-constants';
 
-module.exports = Fluxxor.createStore({
+export default Fluxxor.createStore({
     initialize : function()
     {
         this.data  = new Immutable.Map();

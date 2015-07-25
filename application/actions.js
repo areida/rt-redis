@@ -2,6 +2,6 @@
 
 import keyActions from './flux/key/key-actions';
 
-module.exports = {
+export default {
     key : keyActions
 };

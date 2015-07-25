@@ -91,4 +91,4 @@ Flux.prototype.toObject = function () {
     return data;
 };
 
-module.exports = Flux;
+export default Flux;

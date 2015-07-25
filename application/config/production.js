@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+export default {
     api : {
         hostname : '%PRODUCTION_APP_HOST%',
         port     : 80

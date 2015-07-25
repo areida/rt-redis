@@ -5,7 +5,7 @@ import {List} from 'immutable';
 
 import KeyListItem from './key-list-item';
 
-module.exports = React.createClass({
+export default React.createClass({
 
     displayName : 'KeyList',
 

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+export default {
     locales: ['en-us', 'es'],
     messages: {
         'en-us' : {

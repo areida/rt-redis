@@ -2,7 +2,7 @@
 
 import Q from 'q';
 
-module.exports = (socket) => {
+export default (socket) => {
     return {
         socketRequest(method, path)
         {

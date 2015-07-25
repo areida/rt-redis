@@ -3,7 +3,7 @@
 import Router from 'react-router';
 import routes from './routes';
 
-module.exports = (location, res) => {
+export default (location, res) => {
     if (typeof location === 'undefined') {
         location = Router.HistoryLocation;
     }

@@ -10,7 +10,7 @@ import NotFoundPage from './ui/pages/404';
 
 let {Route, Redirect} = Router;
 
-module.exports = (
+export default (
     <Route>
         <Route path='/' handler={SiteLayout}>
             <Route path='/k/:key/?' name='key' handler={KeyPage} />

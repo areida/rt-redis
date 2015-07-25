@@ -3,7 +3,7 @@
 import React           from 'react';
 import IntlHelperMixin from 's19n';
 
-module.exports = React.createClass({
+export default React.createClass({
 
     displayName : '404',
 

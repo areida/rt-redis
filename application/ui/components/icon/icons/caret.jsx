@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-module.exports = React.createClass({
+export default React.createClass({
     displayName : 'CaretIcon',
 
     render : function()

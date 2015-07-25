@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+export default {
     KEY_CLEAR_VALUE     : 'KEY_CLEAR_VALUE',
     KEY_GET             : 'KEY_GET',
     KEY_GET_FAILURE     : 'KEY_GET_FAILURE',

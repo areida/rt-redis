@@ -5,7 +5,7 @@ var backend;
 
 backend = __BACKEND__ || '%DEV_API_HOST%';
 
-module.exports = {
+export default {
     proxy : {
         hostname : backend
     }

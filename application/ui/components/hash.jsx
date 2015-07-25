@@ -4,7 +4,7 @@ import React      from 'react';
 import Immutable  from 'immutable';
 import jsonMarkup from 'json-markup';
 
-module.exports = React.createClass({
+export default React.createClass({
 
     displayName : 'Hash',
 

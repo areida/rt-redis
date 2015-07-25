@@ -7,7 +7,6 @@ var http      = require('http');
 var IO        = require('socket.io');
 
 var api    = require('./api');
-var config = require('../application/config');
 var render = require('./render');
 
 var app    = new Express();

@@ -42,4 +42,4 @@ switch(__ENVIRONMENT__) {
         throw new Error('Invalid ENVIRONMENT value: ' + __ENVIRONMENT__);
 }
 
-module.exports = merge({}, defaults, config);
+export default merge({}, defaults, config);

@@ -3,7 +3,7 @@
 import constants from './key-constants';
 import Client    from './key-client';
 
-module.exports = (socket) => {
+export default (socket) => {
     let client = new Client(socket);
 
     return {

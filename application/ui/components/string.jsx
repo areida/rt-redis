@@ -5,7 +5,7 @@ import Fluxxor    from 'fluxxor';
 import Immutable  from 'immutable';
 import jsonMarkup from 'json-markup';
 
-module.exports = React.createClass({
+export default React.createClass({
 
     displayName : 'String',
 
