@@ -8,9 +8,9 @@ import constants from './key-constants';
 export default Fluxxor.createStore({
     initialize()
     {
-        this.data  = new Immutable.Map();
-        this.keys  = new Immutable.List();
-        this.error = false;
+        this.data   = new Immutable.Map();
+        this.keys   = new Immutable.List();
+        this.loaded = false;
 
         this.bindActions(
             constants.CLEAR_VALUE, 'onClearValue',
@@ -23,7 +23,8 @@ export default Fluxxor.createStore({
 
     onClearValue()
     {
-        this.data = new Immutable.Map();
+        this.data   = new Immutable.Map();
+        this.loaded = false;
 
         this.emit('change');
     },
@@ -33,7 +34,8 @@ export default Fluxxor.createStore({
 
     onGetKeySuccess(response)
     {
-        this.data = Immutable.fromJS(response || {});
+        this.data   = Immutable.fromJS(response || {});
+        this.loaded = true;
 
         this.emit('change');
     },

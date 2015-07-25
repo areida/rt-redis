@@ -35,8 +35,11 @@ export default React.createClass({
 
     getStateFromFlux()
     {
+        let keyStore = this.getFlux().store('Key');
+
         return {
-            data : this.getFlux().store('Key').data
+            data   : keyStore.data,
+            loaded : keyStore.loaded
         };
     },
 
@@ -66,14 +69,12 @@ export default React.createClass({
 
     render()
     {
-        let type = this.state.data.get('type');
-
-        if (type) {
-            let Component = componentMap[type];
+        if (this.state.loaded) {
+            let Component = componentMap[this.state.data.get('type')];
 
             return <Component data={this.state.data} params={this.props.params} />;
-        } else {
-            return null;
         }
+
+        return null;
     }
 });

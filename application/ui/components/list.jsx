@@ -21,7 +21,7 @@ export default React.createClass({
                 <div className='col-xs-1'>{index}</div>
                 <Json
                     className = 'col-xs'
-                    tex       = {member}
+                    text      = {member}
                 />
             </li>
         );
