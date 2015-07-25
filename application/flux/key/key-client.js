@@ -19,14 +19,14 @@ export default (socket) => {
             );
         },
 
-        get(key)
+        getKey(key)
         {
-            return this.socketRequest('GET', key);
+            return this.socketRequest('key', key);
         },
 
-        getAll()
+        getKeys()
         {
-            return this.socketRequest('KEYS');
+            return this.socketRequest('keys');
         }
     };
 };

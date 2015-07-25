@@ -12,9 +12,9 @@ var webpack          = require('webpack');
 var config           = require('./webpack.config');
 
 var server = new WebpackDevServer(webpack(config), {
-    contentBase : {target : 'http://localhost:9090'},
-    hot         : true,
-    noInfo      : true
+    proxy   : {'*' : {'target' : 'http://localhost:9090'}},
+    hot     : true,
+    noInfo  : true
 });
 
 server.use(function (req, res, next) {

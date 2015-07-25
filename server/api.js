@@ -59,7 +59,7 @@ var getters = {
 };
 
 module.exports = {
-    get : function(key) {
+    key : function(key) {
         return db.type(key).then(
             function (type) {
                 if (getters.hasOwnProperty(type)) {

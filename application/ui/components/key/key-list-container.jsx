@@ -2,7 +2,6 @@
 
 import React   from 'react';
 import Fluxxor from 'fluxxor';
-import _       from 'lodash';
 
 import KeyList from './key-list';
 

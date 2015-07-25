@@ -18,10 +18,10 @@ app.get(/^([^.]+)$/, render);
 app.use(Express.static(process.cwd() + '/build'));
 
 io.on('connection', function (socket) {
-    socket.on('GET', function (key, callback) {
-        api.get(key).done(callback)
+    socket.on('key', function (key, callback) {
+        api.key(key).done(callback)
     });
-    socket.on('KEYS', function (path, callback) {
+    socket.on('keys', function (path, callback) {
         api.keys().done(callback)
     });
 });

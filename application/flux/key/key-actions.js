@@ -9,24 +9,24 @@ export default (socket) => {
     return {
         clearValue()
         {
-            this.dispatch(constants.KEY_CLEAR_VALUE);
+            this.dispatch(constants.CLEAR_VALUE);
         },
-        get(key)
+        getKey(key)
         {
-            this.dispatch(constants.KEY_GET);
+            this.dispatch(constants.GET_KEY);
 
-            return client.get(key).then(
-                response => this.dispatch(constants.KEY_GET_SUCCESS, response),
-                error => this.dispatch(constants.KEY_GET_FAILURE, error)
+            return client.getKey(key).then(
+                response => this.dispatch(constants.GET_KEY_SUCCESS, response),
+                error => this.dispatch(constants.GET_KEY_FAILURE, error)
             );
         },
-        getAll()
+        getKeys()
         {
-            this.dispatch(constants.KEY_GET_ALL);
+            this.dispatch(constants.GET_KEYS);
 
-            return client.getAll().then(
-                response => this.dispatch(constants.KEY_GET_ALL_SUCCESS, response),
-                error => this.dispatch(constants.KEY_GET_ALL_FAILURE, error)
+            return client.getKeys().then(
+                response => this.dispatch(constants.GET_KEYS_SUCCESS, response),
+                error => this.dispatch(constants.GET_KEYS_FAILURE, error)
             );
         }
     };

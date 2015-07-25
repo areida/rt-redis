@@ -13,13 +13,13 @@ export default Fluxxor.createStore({
         this.error = false;
 
         this.bindActions(
-            constants.KEY_CLEAR_VALUE, 'onClearValue',
-            constants.KEY_GET, 'onGet',
-            constants.KEY_GET_FAILURE, 'onGetFailure',
-            constants.KEY_GET_SUCCESS, 'onGetSuccess',
-            constants.KEY_GET_ALL, 'onGetAll',
-            constants.KEY_GET_ALL_FAILURE, 'onGetAllFailure',
-            constants.KEY_GET_ALL_SUCCESS, 'onGetAllSuccess'
+            constants.CLEAR_VALUE, 'onClearValue',
+            constants.GET_KEY, 'onGetKey',
+            constants.GET_KEY_FAILURE, 'onGetKeyFailure',
+            constants.GET_KEY_SUCCESS, 'onGetKeySuccess',
+            constants.GET_KEYS, 'onGetKeys',
+            constants.GET_KEYS_FAILURE, 'onGetKeysFailure',
+            constants.GET_KEYS_SUCCESS, 'onGetKeysSuccess'
         );
     },
 
@@ -30,34 +30,34 @@ export default Fluxxor.createStore({
         this.emit('change');
     },
 
-    onGet()
+    onGetKey()
     {},
 
-    onGetFailure(error)
+    onGetKeyFailure(error)
     {
         this.error = error;
 
         this.emit('change');
     },
 
-    onGetSuccess(response)
+    onGetKeySuccess(response)
     {
         this.data = Immutable.fromJS(response || {});
 
         this.emit('change');
     },
 
-    onGetAll()
+    onGetKeys()
     {},
 
-    onGetAllFailure(error)
+    onGetKeysFailure(error)
     {
         this.error = error;
 
         this.emit('change');
     },
 
-    onGetAllSuccess(response)
+    onGetKeysSuccess(response)
     {
         this.keys = new Immutable.List(response);
 

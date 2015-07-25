@@ -105,6 +105,7 @@ module.exports = [
                 __ENVIRONMENT__ : true,
                 __HOSTNAME__    : true,
                 File            : true,
+                JSON            : true,
                 console         : true,
                 document        : true,
                 io              : true,

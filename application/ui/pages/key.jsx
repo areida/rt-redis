@@ -2,8 +2,6 @@
 
 import React     from 'react';
 import Fluxxor   from 'fluxxor';
-import Immutable from 'immutable';
-import _         from 'lodash';
 
 import HashComponent   from '../components/hash';
 import ListComponent   from '../components/list';

@@ -7,8 +7,6 @@ import _                     from 'lodash';
 
 import KeyList from '../components/key/key-list-container';
 
-let FluxMixin = Fluxxor.FluxMixin(React);
-
 const KEY_TIMEOUT  = 1000;
 const KEYS_TIMEOUT = 2500;
 
@@ -44,7 +42,7 @@ export default React.createClass({
         let params = this.getParams();
 
         if (params.key) {
-            this.getFlux().actions.key.get(params.key).done(() => _.delay(this.pollKey, KEY_TIMEOUT));
+            this.getFlux().actions.key.getKey(params.key).done(() => _.delay(this.pollKey, KEY_TIMEOUT));
         } else {
             _.delay(this.pollKey, KEY_TIMEOUT);
         }
@@ -52,7 +50,7 @@ export default React.createClass({
 
     pollKeys()
     {
-        this.getFlux().actions.key.getAll().done(() => _.delay(this.pollKeys, KEYS_TIMEOUT));
+        this.getFlux().actions.key.getKeys().done(() => _.delay(this.pollKeys, KEYS_TIMEOUT));
     },
 
     render()
