@@ -3,12 +3,8 @@
 import React                 from 'react';
 import {RouteHandler, State} from 'react-router';
 import Fluxxor               from 'fluxxor';
-import _                     from 'lodash';
 
-import KeyList from '../components/key/key-list-container';
-
-const KEY_TIMEOUT  = 1000;
-const KEYS_TIMEOUT = 2500;
+import KeyList from '../components/key-list/key-list-container';
 
 export default React.createClass({
 
@@ -21,36 +17,6 @@ export default React.createClass({
         return {
             key : this.getParams().key
         };
-    },
-
-    componentDidMount()
-    {
-        this.pollKey();
-        this.pollKeys();
-    },
-
-    componentWillReceiveProps()
-    {
-        if (this.state.key !== this.getParams().key) {
-            this.setState({key : this.getParams().key});
-            this.getFlux().actions.key.clearValue();
-        }
-    },
-
-    pollKey()
-    {
-        let params = this.getParams();
-
-        if (params.key) {
-            this.getFlux().actions.key.getKey(params.key).done(() => _.delay(this.pollKey, KEY_TIMEOUT));
-        } else {
-            _.delay(this.pollKey, KEY_TIMEOUT);
-        }
-    },
-
-    pollKeys()
-    {
-        this.getFlux().actions.key.getKeys().done(() => _.delay(this.pollKeys, KEYS_TIMEOUT));
     },
 
     render()
