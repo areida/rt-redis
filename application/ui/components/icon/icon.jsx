@@ -1,13 +1,24 @@
 'use strict';
 
-var React = require('react');
+import React      from 'react';
+import classNames from 'classnames';
 
 export default React.createClass({
 
     displayName : 'Icon',
 
     propTypes : {
-        icon : React.PropTypes.string.isRequired,
+        icon : React.PropTypes.oneOf([
+            'back',
+            'cancel',
+            'caret',
+            'group',
+            'hamburger',
+            'heart',
+            'save',
+            'search',
+            'trash'
+        ]).isRequired,
         size : React.PropTypes.oneOf([
             'x-small',
             'small',
@@ -36,7 +47,7 @@ export default React.createClass({
         className : React.PropTypes.string
     },
 
-    getDefaultProps : function()
+    getDefaultProps()
     {
         return {
             size       : null,
@@ -46,34 +57,24 @@ export default React.createClass({
         };
     },
 
-    render : function()
+    render()
     {
-        var Icon,
-            classes,
-            sizeClass,
-            colorThemeClass,
-            rotationClass;
+        import Icon from './icons/' +  this.props.icon;
 
-        Icon = require('./icons/' +  this.props.icon);
+        let sizeClass       = this.props.size ? 'icon--' + this.props.size : null;
+        let colorThemeClass = this.props.colorTheme ? 'icon--' + this.props.colorTheme : null;
+        let rotationClass   = 'icon--rotate-' + this.props.rotate;
 
-        sizeClass = this.props.size ?
-            'icon--' + this.props.size : null;
-
-        colorThemeClass = this.props.colorTheme ?
-            'icon--' + this.props.colorTheme : null;
-
-        rotationClass = 'icon--rotate-' + this.props.rotate;
-
-        classes = [
+        let classes = [
             'icon',
             sizeClass,
             colorThemeClass,
             rotationClass,
             this.props.className
-        ].join(' ').trim();
+        ];
 
         return (
-            <span className={classes}>
+            <span className={classNames(classes)}>
                 <Icon />
             </span>
         );

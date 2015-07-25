@@ -6,7 +6,7 @@ import Immutable from 'immutable';
 import constants from './key-constants';
 
 export default Fluxxor.createStore({
-    initialize : function()
+    initialize()
     {
         this.data  = new Immutable.Map();
         this.keys  = new Immutable.List();

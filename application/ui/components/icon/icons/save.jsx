@@ -1,11 +1,11 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
 export default React.createClass({
     displayName : 'SaveIcon',
 
-    render : function()
+    render()
     {
         return (
             <svg viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg">

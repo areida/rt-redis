@@ -1,4 +1,4 @@
-/* globals global, process, console */
+/* globals console, global, process */
 'use strict';
 
 global.__BACKEND__     = process.env.BACKEND;

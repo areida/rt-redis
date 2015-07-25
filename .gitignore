@@ -6,4 +6,3 @@ test
 npm-debug.log
 .vagrant
 dist/
-server/render-generated.js

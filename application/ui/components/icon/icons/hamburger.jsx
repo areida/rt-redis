@@ -1,11 +1,11 @@
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
 export default React.createClass({
     displayName : 'HamburgerIcon',
 
-    render : function()
+    render()
     {
         return (
             <svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
